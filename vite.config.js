@@ -11,5 +11,5 @@ export default defineConfig({
     }),
   ],
   // Replace 'repo-name' with your actual GitHub repository name
-  base: '/vrtechies/',
+  base: '',
 });
