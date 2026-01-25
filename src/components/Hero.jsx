@@ -1,114 +1,66 @@
-// Hero.jsx
-import { useState, useEffect, Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { motion, AnimatePresence } from 'framer-motion';
-import Brain from '../hooks/BrainModal';
-
-const HERO_CONTENT = [
-    {
-        title: "Unlock the Future of Digital",
-        desc: "Neural Network Solutions for Modern Brands",
-        color: "#2563eb",
-        stats: { nodes: "1.2k", latency: "14ms", status: "Active" }
-    },
-    {
-        title: "Cognitive Web Architecture",
-        desc: "Smart Systems that Think and Scale",
-        color: "#9333ea",
-        stats: { nodes: "4.8k", latency: "09ms", status: "Optimizing" }
-    },
-    {
-        title: "Intelligent UI Design",
-        desc: "User Experiences Driven by Data",
-        color: "#db2777",
-        stats: { nodes: "2.4k", latency: "22ms", status: "Learning" }
-    }
-];
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import { motion } from "framer-motion";
+import Brain from "../hooks/BrainModal";
+import { useTheme } from "../hooks/ThemeContext";
+import { GLOBAL_THEMES } from "../config/constants";
 
 const Hero = () => {
-    const [index, setIndex] = useState(0);
-    const activeColor = HERO_CONTENT[index].color;
+  const { theme, isDark, colorIndex } = useTheme();
+  const activeColor = isDark ? theme?.dark.primary : theme?.light.primary;
+  const { title, description, ctaTitle } = GLOBAL_THEMES[colorIndex] || {};
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIndex((prev) => (prev + 1) % HERO_CONTENT.length);
-            document.documentElement.style.setProperty('--dynamic-color', HERO_CONTENT[index].color);
-        }, 5000);
-        return () => clearInterval(interval);
-    }, [index]);
+  return (
+    <section className="relative flex h-[100dvh] w-screen items-center justify-center overflow-hidden bg-white dark:bg-slate-900">
+      {/* 3D Background */}
+      <div className="absolute inset-0">
+        <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 12], fov: 35 }}>
+          <ambientLight intensity={1.5} />
+          <Suspense fallback={null}>
+            <Brain color={activeColor} />
+          </Suspense>
+        </Canvas>
+      </div>
 
-    return (
-        <section className="relative w-screen h-[80dvh] bg-white dark:bg-slate-900 overflow-hidden flex flex-col items-center justify-center">
+      {/* Hero Content */}
+      <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+        <motion.div
+          key={colorIndex} // optional, if you want color-based re-animation
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }} // triggers when in viewport
+          exit={{ opacity: 0, scale: 1.1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: false, amount: 0.5 }} // animate every time it enters, when 50% visible
+          className="flex flex-col items-center gap-6"
+        >
+          <h1 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
+            {(title || "").toUpperCase()}
+          </h1>
 
-            {/* 3D Canvas Layer */}
-            <div className="absolute inset-0 z-0">
-                <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 12], fov: 35 }}>
-                    <ambientLight intensity={1.5} />
-                    <Suspense fallback={null}>
-                        <Brain color={activeColor} />
-                    </Suspense>
-                </Canvas>
-            </div>
+          <button
+            style={{ backgroundColor: activeColor }}
+            aria-label={ctaTitle || "Get Started"}
+            className="rounded-full px-8 py-3 text-xs font-black uppercase tracking-widest text-white shadow-2xl transition hover:brightness-110 active:scale-95 sm:px-12 sm:py-4 sm:text-sm md:text-base"
+          >
+            {ctaTitle || "Get Started"}
+          </button>
+        </motion.div>
+      </div>
 
-            {/* NEW CONTENT: Left Side Floating Stats (Hidden on Mobile) */}
-            <div className="absolute left-10 top-1/2 -translate-y-1/2 z-20 hidden xl:flex flex-col gap-8">
-                {Object.entries(HERO_CONTENT[index].stats).map(([key, value]) => (
-                    <div key={key} className="border-l-2 pl-4 transition-colors duration-500" style={{ borderColor: activeColor }}>
-                        <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">{key}</p>
-                        <p className="text-2xl font-black dark:text-white leading-none mt-1">{value}</p>
-                    </div>
-                ))}
-            </div>
-
-            {/* Main Centered Content */}
-            <div className="relative z-10 w-full max-w-5xl px-6 text-center">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={index}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 1.1 }}
-                        transition={{ duration: 0.7 }}
-                        className="flex flex-col items-center"
-                    >
-                        <motion.span
-                            animate={{ color: activeColor }}
-                            className="mb-6 text-xs font-black tracking-[0.4em] uppercase"
-                        >
-                            System Online / 00{index + 1}
-                        </motion.span>
-
-                        <h1 className="text-5xl sm:text-7xl md:text-9xl font-black text-slate-900 dark:text-white leading-[0.9] tracking-tighter">
-                            {HERO_CONTENT[index].title}
-                        </h1>
-
-                        <p className="mt-8 text-lg sm:text-xl text-slate-500 dark:text-slate-400 font-medium max-w-xl leading-relaxed">
-                            Leading the transition from static interfaces to dynamic, cognitive digital ecosystems.
-                        </p>
-
-                        <div className="mt-12 flex flex-col sm:flex-row gap-5">
-                            <button
-                                style={{ backgroundColor: activeColor }}
-                                className="px-12 py-4 rounded-full text-white font-black uppercase tracking-widest text-xs shadow-2xl transition-all hover:brightness-110 active:scale-95"
-                            >
-                                Launch Console
-                            </button>
-                            <button className="px-12 py-4 rounded-full border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white font-black uppercase tracking-widest text-xs hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
-                                Documentation
-                            </button>
-                        </div>
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-
-
-            {/* Background Color Bleed */}
-            <div
-                className="absolute top-0 left-0 w-full h-32 opacity-10 blur-[100px] pointer-events-none transition-colors duration-1000"
-                style={{ backgroundColor: activeColor }}
-            />
-        </section>
-    );
+      {/* Color Glow */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }} // animate when it enters viewport
+        transition={{ delay: 0.4, duration: 0.5 }}
+        viewport={{ once: false, amount: 0.5 }} // triggers every time
+        className="absolute inset-x-0 bottom-16 z-10 px-4 text-center"
+      >
+        <p className="mx-auto max-w-2xl text-center text-base sm:text-lg md:text-xl font-medium leading-relaxed text-slate-700 dark:text-slate-300">
+          {description}
+        </p>
+      </motion.div>
+    </section>
+  );
 };
 
 export default Hero;
