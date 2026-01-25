@@ -9,13 +9,13 @@ const AboutUs = () => {
     <>
       <section
         className={`
-        relative w-screen flex items-center justify-center px-12 py-12
+        relative w-full flex items-center justify-center px-6 py-12
         transition-colors duration-500
         ${isDark ? "bg-slate-900 text-white" : "bg-slate-50 text-slate-900"}
       `}
         id="about"
       >
-        <div className="max-w-6xl w-screen grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -23,7 +23,7 @@ const AboutUs = () => {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
+            <h2 className="text-4xl md:text-6xl font-black tracking-tighter">
               About <span style={{ color: activeColor }}>Us</span>
             </h2>
 

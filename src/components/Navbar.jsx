@@ -135,6 +135,7 @@ const Navbar = () => {
                 border: "none",
                 outline: "none",
                 color: "var(--color-primary)",
+                backgroundColor: 'transparent'
               }}
               aria-label="Toggle Menu"
             >
