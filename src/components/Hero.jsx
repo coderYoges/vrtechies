@@ -50,18 +50,10 @@ const Hero = () => {
               outline: "none",
             }}
             aria-label={ctaTitle || "Get Started"}
-            className="
-    group relative overflow-hidden rounded-full 
-    border-[1.5px] px-8 py-3 text-xs font-['Roboto'] uppercase tracking-widest
-    shadow-[0_4px_20px_rgba(0,0,0,0.08)] 
-    backdrop-blur-md transition-all duration-300 
-    hover:backdrop-blur-xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]
-    active:scale-95 sm:px-12 sm:py-4 sm:text-sm md:text-base
-  "
+            className="group relative overflow-hidden rounded-full border-[1.5px] px-8 py-3 text-xs font-['Roboto'] uppercase tracking-widest shadow-[0_4px_20px_rgba(0,0,0,0.08)] backdrop-blur-md hover:backdrop-blur-xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] active:scale-95 sm:px-12 sm:py-4 sm:text-sm md:text-base"
           >
             {/* Darker sheen effect for white backgrounds */}
-            <span className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full transition-transform duration-700 group-hover:translate-x-full" />
-
+            <span className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full transition-transform duration-100 group-hover:translate-x-full" />
             <span className="relative z-10">{ctaTitle || "Get Started"}</span>
           </button>
         </motion.div>

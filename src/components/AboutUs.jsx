@@ -17,7 +17,7 @@ const AboutUs = () => {
         style={{ color: isDark ? COLORS.DARK_PRIMARY : COLORS.LIGHT_PRIMARY }}
         id="about"
       >
-        <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-2">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}

@@ -51,7 +51,7 @@ const Services = () => {
   return (
     <section
       style={{ color: isDark ? COLORS.DARK_PRIMARY : COLORS.LIGHT_PRIMARY }}
-      className={`relative h--100 w-full px-6 py-8 overflow-hidden ${isDark ? "bg-slate-900" : "bg-slate-50"}`}
+      className={`relative h--100 w-full px-6 py-12 overflow-hidden ${isDark ? "bg-slate-900" : "bg-slate-50"}`}
       id="services"
     >
       <div className="max-w-7xl mx-auto gap-3">
@@ -62,7 +62,7 @@ const Services = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-4xl md:text-6xl font-black tracking-tighter pb-8"
+          className="text-4xl md:text-6xl font-black tracking-tighter pb-8 px-2"
         >
           Empowering the next <br />
           <span className="opacity-40 italic" style={{ color: activeColor }}>
