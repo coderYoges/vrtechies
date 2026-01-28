@@ -122,7 +122,7 @@ const Navbar = () => {
                 border: "none",
                 outline: "none",
                 backgroundColor: "var(--color-primary)",
-                color: COLORS.LIGHT_PRIMARY,
+                color: isDark ?  COLORS.LIGHT_PRIMARY : COLORS.WHITE,
               }}
               className="px-5 py-2.5 rounded-full text-md md:text-lg lg:text-xl font-bold transition-all hover:brightness-110 active:scale-95 shadow-lg"
             >
@@ -221,7 +221,7 @@ const Navbar = () => {
                 onClick={closeMenu}
                 style={{
                   backgroundColor: "var(--color-primary)",
-                  color: COLORS.LIGHT_PRIMARY,
+                  color: isDark ?  COLORS.LIGHT_PRIMARY : COLORS.WHITE,
                 }}
                 className="mt-2 w-full text-white py-3 rounded-xl font-bold transition-all hover:brightness-110 active:scale-80"
                 initial={{ x: -20, opacity: 0 }}

@@ -1,7 +1,7 @@
 export const GLOBAL_THEMES = [
   {
     name: "Blue",
-    title: "Digital Future",
+    title: "DIGITAL FUTURE",
     description:
       "From high-performance websites to scalable mobile apps, we develop custom, user-centric software that helps your business dominate its market.",
     ctaTitle: "Start Your Project",
@@ -18,7 +18,7 @@ export const GLOBAL_THEMES = [
   },
   {
     name: "Purple",
-    title: "Impactful Solutions",
+    title: "IMPACTFUL SOLUTIONS",
     description:
       "We translate your vision into functional digital realities. Expert development, AI integration, and seemless user experiences from ideation to launch.",
     ctaTitle: "Request a Free Proposal",
@@ -35,7 +35,7 @@ export const GLOBAL_THEMES = [
   },
   {
     name: "Pink",
-    title: "Premium Apps",
+    title: "PREMIUM APPS",
     description:
       "Stop settling for generic solutions. We craft bespoke digital products that align perfectly with your brand and business goals.",
     ctaTitle: "View Our Work",
@@ -52,7 +52,7 @@ export const GLOBAL_THEMES = [
   },
   {
     name: "Forest Green",
-    title: "Custom Solutions",
+    title: "CUSTOM SOLUTIONS",
     description:
       "We bridge the gap between creative design and technical execution, crafting bespoke apps and websites that thrive on any device.",
     ctaTitle: "Book a Consultation",
@@ -69,7 +69,7 @@ export const GLOBAL_THEMES = [
   },
   {
     name: "Sunny Yellow",
-    title: "Dedicated Partner",
+    title: "DEDICATED PARTNER",
     description:
       "We build scalable digital products tailored to your needs.End-to-end development focused on quality, speed, and long-tem success.",
     ctaTitle: "Partner With Us",
@@ -87,6 +87,7 @@ export const GLOBAL_THEMES = [
 ];
 
 export const COLORS = {
-  LIGHT_PRIMARY : '#213547',
-  DARK_PRIMARY: '#C0C0C0',
-}
+  LIGHT_PRIMARY: "#213547",
+  DARK_PRIMARY: "#C0C0C0",
+  WHITE: "#fff",
+};

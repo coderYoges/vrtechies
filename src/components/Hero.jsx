@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { motion } from "framer-motion";
 import Brain from "../hooks/BrainModal";
 import { useTheme } from "../hooks/ThemeContext";
-import { GLOBAL_THEMES } from "../config/constants";
+import { GLOBAL_THEMES, COLORS } from "../config/constants";
 
 const Hero = () => {
   const { theme, isDark, colorIndex } = useTheme();
@@ -36,17 +36,33 @@ const Hero = () => {
           className="flex flex-col items-center gap-6"
         >
           <h1
-            className={`text-3xl font-black tracking-tight sm:text-4xl md:text-5xl lg:text-6xl ${isDark ? " text-white" : "text-slate-900"}`}
+            className="font-['Roboto'] text-3xl font-black tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"
+            style={{
+              color: isDark ? COLORS.DARK_PRIMARY : COLORS.LIGHT_PRIMARY,
+            }}
           >
-            {(title || "").toUpperCase()}
+            {title}
           </h1>
-
           <button
-            style={{ backgroundColor: activeColor }}
+            style={{
+              backgroundColor: `${activeColor}15`,
+              borderColor: activeColor,
+              outline: "none",
+            }}
             aria-label={ctaTitle || "Get Started"}
-            className="rounded-full px-8 py-3 text-xs font-black uppercase tracking-widest text-white shadow-2xl transition hover:brightness-110 active:scale-95 sm:px-12 sm:py-4 sm:text-sm md:text-base"
+            className="
+    group relative overflow-hidden rounded-full 
+    border-[1.5px] px-8 py-3 text-xs font-['Roboto'] uppercase tracking-widest
+    shadow-[0_4px_20px_rgba(0,0,0,0.08)] 
+    backdrop-blur-md transition-all duration-300 
+    hover:backdrop-blur-xl hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]
+    active:scale-95 sm:px-12 sm:py-4 sm:text-sm md:text-base
+  "
           >
-            {ctaTitle || "Get Started"}
+            {/* Darker sheen effect for white backgrounds */}
+            <span className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full transition-transform duration-700 group-hover:translate-x-full" />
+
+            <span className="relative z-10">{ctaTitle || "Get Started"}</span>
           </button>
         </motion.div>
       </div>
@@ -59,7 +75,12 @@ const Hero = () => {
         viewport={{ once: false, amount: 0.5 }}
         className="absolute inset-x-0 bottom-16 z-10 px-4 text-center"
       >
-        <p className="mx-auto max-w-2xl text-center text-base sm:text-lg md:text-xl font-medium leading-relaxed text-slate-700 dark:text-slate-300">
+        <p
+          style={{
+            color: isDark ? COLORS.DARK_PRIMARY : COLORS.LIGHT_PRIMARY,
+          }}
+          className="mx-auto max-w-2xl text-center text-base sm:text-lg md:text-xl font-medium leading-relaxed"
+        >
           {description}
         </p>
       </motion.div>
