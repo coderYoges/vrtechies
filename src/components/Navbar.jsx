@@ -3,6 +3,7 @@ import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import { Sun, Moon, Menu, X } from "lucide-react";
 import LogoCmpt from "../assets/Logo.jsx";
 import { useTheme } from "../hooks/ThemeContext";
+import { COLORS } from "../config/constants.js";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -46,9 +47,9 @@ const Navbar = () => {
           style={{ scaleX, backgroundColor: "var(--color-primary)" }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 h-22 flex justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center space-x-1 md:space-x-2 lg:space-x-3">
+          <div className="flex flex-col items-center space-x-1 md:space-x-2 lg:space-x-3">
             <LogoCmpt
               activeColor="var(--color-primary)"
               size={
@@ -59,16 +60,12 @@ const Navbar = () => {
                     : 60
               }
             />
-            <div className="flex flex-col -space-y-0.2">
+            <div className="flex text-lg md:text-2xl lg:text-3xl font-bold tracking-tight leading-none">
+              <span style={{ color: "var(--color-primary)" }}>VR</span>
               <span
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-none"
-                style={{ color: "var(--color-primary)" }}
-              >
-                VR
-              </span>
-              <span
-                className="text-lg md:text-2xl lg:text-3xl font-bold tracking-tight leading-none"
-                style={{ color: "#213547" }}
+                style={{
+                  color: isDark ? COLORS.DARK_PRIMARY : COLORS.LIGHT_PRIMARY,
+                }}
               >
                 Techies
               </span>
@@ -82,13 +79,20 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 style={{ color: "var(--color-primary)" }}
-                className="text-sm font-semibold transition-colors hover:[color:var(--color-hover)]"
+                className="text-md md:text-lg lg:text-xl font-semibold transition-colors hover:brightness-120 active:scale-80"
               >
                 {link.name}
               </a>
             ))}
 
-            <div className="h-6 w-px bg-gray-200 dark:bg-gray-700" />
+            <div
+              className="h-6 w-[2px]"
+              style={{
+                backgroundColor: isDark
+                  ? COLORS.DARK_PRIMARY
+                  : COLORS.LIGHT_PRIMARY,
+              }}
+            />
 
             {/* Theme toggle */}
             <button
@@ -98,16 +102,29 @@ const Navbar = () => {
               aria-label="Toggle Theme"
             >
               {isDark ? (
-                <Moon size={20} className="bg-black text-white" />
+                <Moon
+                  size={24}
+                  className="bg-black"
+                  style={{ color: "var(--color-primary)" }}
+                />
               ) : (
-                <Sun size={20} style={{ color: "var(--color-primary)" }} />
+                <Sun
+                  size={24}
+                  className="bg-white"
+                  style={{ color: "var(--color-primary)" }}
+                />
               )}
             </button>
 
             {/* CTA Button */}
             <button
-              style={{ backgroundColor: "var(--color-primary)" }}
-              className="text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all hover:brightness-110 active:scale-95 shadow-lg"
+              style={{
+                border: "none",
+                outline: "none",
+                backgroundColor: "var(--color-primary)",
+                color: COLORS.LIGHT_PRIMARY,
+              }}
+              className="px-5 py-2.5 rounded-full text-md md:text-lg lg:text-xl font-bold transition-all hover:brightness-110 active:scale-95 shadow-lg"
             >
               Get Started
             </button>
@@ -122,9 +139,17 @@ const Navbar = () => {
               aria-label="Toggle Theme"
             >
               {isDark ? (
-                <Moon size={24} className="bg-black text-white" />
+                <Moon
+                  size={24}
+                  style={{ color: "var(--color-primary)" }}
+                  className="bg-black"
+                />
               ) : (
-                <Sun size={24} style={{ color: "var(--color-primary)" }} />
+                <Sun
+                  size={24}
+                  style={{ color: "var(--color-primary)" }}
+                  className="bg-white"
+                />
               )}
             </button>
 
@@ -135,7 +160,7 @@ const Navbar = () => {
                 border: "none",
                 outline: "none",
                 color: "var(--color-primary)",
-                backgroundColor: 'transparent'
+                backgroundColor: "transparent",
               }}
               aria-label="Toggle Menu"
             >
@@ -194,7 +219,10 @@ const Navbar = () => {
 
               <motion.button
                 onClick={closeMenu}
-                style={{ backgroundColor: "var(--color-primary)" }}
+                style={{
+                  backgroundColor: "var(--color-primary)",
+                  color: COLORS.LIGHT_PRIMARY,
+                }}
                 className="mt-2 w-full text-white py-3 rounded-xl font-bold transition-all hover:brightness-110 active:scale-80"
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}

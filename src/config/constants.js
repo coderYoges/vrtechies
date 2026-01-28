@@ -86,3 +86,7 @@ export const GLOBAL_THEMES = [
   },
 ];
 
+export const COLORS = {
+  LIGHT_PRIMARY : '#213547',
+  DARK_PRIMARY: '#C0C0C0',
+}

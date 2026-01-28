@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useTheme } from "../hooks/ThemeContext";
-import { GLOBAL_THEMES } from "../config/constants";
+import { GLOBAL_THEMES, COLORS } from "../config/constants";
 
 const SVGComponent = ({ size = 50 }) => {
   const { isDark, colorIndex = 0 } = useTheme();
   const mainColor = isDark
     ? GLOBAL_THEMES[colorIndex].dark.primary
     : GLOBAL_THEMES[colorIndex].light.primary;
-  const secondaryColor = "#213547"; // Example secondary color
+  const secondaryColor = isDark ? COLORS.DARK_PRIMARY : COLORS.LIGHT_PRIMARY;
   return (
     <svg
       width={size}
