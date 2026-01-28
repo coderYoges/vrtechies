@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useTheme } from "../hooks/ThemeContext";
+import { COLORS } from "../config/constants";
 
 const AboutUs = () => {
   const { theme, isDark } = useTheme();
@@ -11,8 +12,9 @@ const AboutUs = () => {
         className={`
         relative w-full flex items-center justify-center px-6 py-12
         transition-colors duration-500
-        ${isDark ? "bg-slate-900 text-white" : "bg-slate-50 text-slate-900"}
+        ${isDark ? "bg-slate-900" : "bg-slate-50"}
       `}
+        style={{ color: isDark ? COLORS.DARK_PRIMARY : COLORS.LIGHT_PRIMARY }}
         id="about"
       >
         <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

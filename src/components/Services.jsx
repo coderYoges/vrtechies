@@ -8,6 +8,7 @@ import {
   BarChart3,
 } from "lucide-react";
 import { useTheme } from "../hooks/ThemeContext";
+import { COLORS } from "../config/constants";
 
 const SERVICES = [
   {
@@ -49,34 +50,34 @@ const Services = () => {
   const activeFont = isDark ? theme?.dark.text : theme?.light.text;
   return (
     <section
-      className={`relative h--100 w-full px-6 py-12 overflow-hidden ${isDark ? "bg-slate-900 text-white" : "bg-slate-50 text-slate-900"}`}
+      style={{ color: isDark ? COLORS.DARK_PRIMARY : COLORS.LIGHT_PRIMARY }}
+      className={`relative h--100 w-full px-6 py-8 overflow-hidden ${isDark ? "bg-slate-900" : "bg-slate-50"}`}
       id="services"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto gap-3">
         {/* Section Header */}
-        <div className="pb-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="text-4xl md:text-6xl font-black tracking-tighter"
-          >
-            Empowering the next <br />
-            <span className="opacity-40 italic" style={{ color: activeColor }}>
-              generation of web, app, and AI solutions.
-            </span>
-          </motion.h2>
-        </div>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-4xl md:text-6xl font-black tracking-tighter pb-8"
+        >
+          Empowering the next <br />
+          <span className="opacity-40 italic" style={{ color: activeColor }}>
+            generation of web, app, and AI solutions.
+          </span>
+        </motion.h2>
 
         {/* Services Grid */}
-                  <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {SERVICES.map((service, i) => (
             <motion.div
               key={i}
@@ -84,9 +85,8 @@ const Services = () => {
               className={`
   rounded-2xl p-6 border backdrop-blur-xl
   transition-all duration-500 cursor-pointer
-  hover:bg-[color:var(--primary-color)]
-  hover:bg-opacity-10
   ${isDark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200/50"}
+  hover:bg-[#a9a9a9]
 `}
             >
               {/* Icon */}
