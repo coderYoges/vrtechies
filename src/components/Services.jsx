@@ -51,7 +51,8 @@ const Services = () => {
   return (
     <section
       style={{ color: isDark ? COLORS.DARK_PRIMARY : COLORS.LIGHT_PRIMARY }}
-      className={`relative h--100 w-full px-6 py-12 overflow-hidden ${isDark ? "bg-slate-900" : "bg-slate-50"}`}
+      className={`relative w-full flex items-center justify-center px-6 py-12
+        transition-colors duration-500 ${isDark ? "bg-slate-900" : "bg-slate-50"}`}
       id="services"
     >
       <div className="max-w-7xl mx-auto gap-3">
@@ -79,52 +80,33 @@ const Services = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {SERVICES.map((service, i) => (
-            <motion.div
+            <div
               key={i}
               style={{ border: `2px solid ${activeBorder}` }}
               className={`
   rounded-2xl p-6 border backdrop-blur-xl
   transition-all duration-500 cursor-pointer
   ${isDark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200/50"}
-  hover:bg-[#a9a9a9]
 `}
             >
               {/* Icon */}
-              <motion.div
-                className="mb-6"
-                style={{ color: activeColor }}
-                initial={{ y: 0 }}
-                whileHover={{ y: -4, scale: 1.08 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 20,
-                }}
-              >
+              <div className="mb-6" style={{ color: activeColor }}>
                 {service.icon}
-              </motion.div>
+              </div>
 
               {/* Title */}
-              <motion.h3
-                initial={{ opacity: 0, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.15 }}
+              <h3
                 className="text-xl font-black mb-4 tracking-tight"
                 style={{ color: activeFont }}
               >
                 {service.title}
-              </motion.h3>
+              </h3>
 
               {/* Description */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: i * 0.18 }}
-                className="text-slate-500 dark:text-slate-400 leading-relaxed text-sm font-medium"
-              >
+              <p className="text-slate-500 dark:text-slate-400 leading-relaxed text-sm font-medium">
                 {service.desc}
-              </motion.p>
-            </motion.div>
+              </p>
+            </div>
           ))}
         </motion.div>
       </div>

@@ -112,3 +112,20 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.prev-btn, .next-btn {
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* Hide or fade arrows when disabled */
+.swiper-button-disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Ensure arrows sit above the slide effects */
+.swiper-container {
+  overflow: visible !important;
+}

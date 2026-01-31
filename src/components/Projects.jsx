@@ -1,54 +1,70 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectCoverflow, Navigation } from "swiper/modules";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import hrmsWeb from "../assets/hrmDashboard.png";
+import attandanceApp from "../assets/attendanceApp.png";
+import protfoloioSite from "../assets/protfolioSite.png";
+import grocerySite from "../assets/grocerySite.png";
+import bookingSite from "../assets/bookingSite.png";
+import React from "react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
 import { useTheme } from "../hooks/ThemeContext";
 import { COLORS } from "../config/constants";
 
 const PROJECT_DATA = [
   {
     id: 0,
-    title: "CORE WEB",
-    category: "Scalable Ecosystems",
-    image: "https://images.unsplash.com",
+    title: "HRMS Admin Panel",
+    category: "",
+    image: hrmsWeb,
   },
   {
     id: 1,
-    title: "NATIVE GO",
-    category: "Mobile Architecture",
-    image: "https://images.unsplash.com",
+    title: "Portfolio Website",
+    category: "",
+    image: protfoloioSite,
   },
   {
     id: 2,
-    title: "NEURAL LOGIC",
-    category: "AI & Machine Learning",
-    image: "https://images.unsplash.com",
+    title: "Grocery Sites",
+    category: "",
+    image: grocerySite,
   },
   {
     id: 3,
-    title: "CLOUD SYNC",
-    category: "Infrastructure & DevOps",
-    image: "https://images.unsplash.com",
+    title: "Booking web applications",
+    category: "",
+    image: bookingSite,
   },
   {
     id: 4,
-    title: "OMNI INTERFACE",
-    category: "UX / UI Engineering",
-    image: "https://images.unsplash.com",
+    title: "Attendance Tracker App",
+    category: "",
+    image: attandanceApp,
   },
 ];
 
 const ProjectTiles = () => {
-  const { colorIndex, isDark } = useTheme();
-
+  const [selectedProject, setSelectedProject] = React.useState(null);
+  const { colorIndex, isDark, theme } = useTheme();
+  const activeColor = isDark ? theme?.dark.primary : theme?.light.primary;
   return (
     <section
-      className={`relative w-full py-12 px-6 overflow-hidden transition-colors duration-1000  ${isDark ? "bg-slate-900" : "bg-slate-50"}`}
+      className={`relative h--100 w-full px-6 py-12 overflow-hidden ${isDark ? "bg-slate-900" : "bg-slate-50"}`}
     >
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="flex justify-between items-end pb-8 md:pb-12 px-2">
+      <div className="max-w-7xl mx-auto z-10 overflow-hidden">
+        <div className="flex justify-between items-end pb-8 md:pb-12">
           <motion.h2
             key={colorIndex}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-4xl md:text-6xl font-black tracking-tighter"
             style={{
               color: isDark ? COLORS.DARK_PRIMARY : COLORS.LIGHT_PRIMARY,
@@ -65,80 +81,101 @@ const ProjectTiles = () => {
         </div>
 
         {/* --- GRID SYSTEM --- */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {PROJECT_DATA.map((project, i) => {
-            const isActive = colorIndex === i;
-            return (
-              <motion.div
-                key={project.id}
-                className={`relative h-[500px] rounded-[2.5rem] overflow-hidden border-2 cursor-pointer transition-all duration-700 
-                  ${isActive ? "z-20 scale-105 shadow-2xl active-glow" : "z-10 opacity-30 grayscale scale-95"}`}
-                style={{
-                  borderColor: isActive
-                    ? "var(--color-primary)"
-                    : "rgba(148, 163, 184, 0.1)",
-                }}
-              >
+        <Swiper
+          modules={[Navigation, Autoplay, EffectCoverflow]}
+          navigation={{
+            prevEl: ".prev-btn",
+            nextEl: ".next-btn",
+          }}
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          loop={true}
+          slidesPerView={"auto"}
+          autoplay={{ delay: 5000 }}
+          className="relative w-full py-10"
+        >
+          {PROJECT_DATA.map((project, i) => (
+            <SwiperSlide
+              key={project.id}
+              className="w-[75%] md:w-[450px]"
+              onClick={() => setSelectedProject(i)}
+            >
+              <motion.div className="relative h-[550px] rounded-[2.5rem] overflow-hidden">
                 <img
                   src={project.image}
                   className="absolute inset-0 w-full h-full object-cover"
-                  alt={project.title}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent opacity-90" />
-
-                <AnimatePresence mode="wait">
-                  {isActive && (
-                    <motion.div
-                      initial={{ x: 60, y: -60 }}
-                      animate={{ x: 0, y: 0 }}
-                      exit={{ x: 60, y: -60 }}
-                      className="absolute top-0 right-0 w-24 h-24 z-30"
-                      style={{
-                        backgroundColor: "var(--dynamic-color)",
-                        clipPath: "polygon(100% 0, 0 0, 100% 100%)",
-                      }}
-                    />
-                  )}
-                </AnimatePresence>
-
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 p-10 z-20 w-full">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div
-                      className={`w-2 h-2 rounded-full ${isActive ? "animate-ping" : ""}`}
-                      style={{
-                        backgroundColor: isActive
-                          ? "var(--dynamic-color)"
-                          : "#94a3b8",
-                      }}
-                    />
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/70">
-                      {isActive ? "Processing" : "Locked"}
-                    </span>
-                  </div>
-
-                  <h3 className="text-4xl font-black text-white uppercase italic tracking-tighter mb-8">
+                  <h3 className="text-4xl font-black text-white italic">
                     {project.title}
                   </h3>
-
-                  <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                    <AnimatePresence>
-                      {isActive && (
-                        <motion.div
-                          key={`progress-${colorIndex}`}
-                          initial={{ width: "0%" }}
-                          animate={{ width: "100%" }}
-                          transition={{ duration: 5, ease: "linear" }}
-                          className="h-full"
-                          style={{ backgroundColor: "var(--dynamic-color)" }}
-                        />
-                      )}
-                    </AnimatePresence>
+                  {/* Progress Bar */}
+                  <div className="w-full h-1 bg-white/10 mt-4 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: "0%" }}
+                      whileInView={{ width: "100%" }}
+                      transition={{ duration: 5 }}
+                      className="h-full bg-[var(--color-primary)]"
+                    />
                   </div>
                 </div>
               </motion.div>
-            );
-          })}
-        </div>
+            </SwiperSlide>
+          ))}
+
+          {/* NAVIGATION CONTAINER */}
+          <div className="absolute inset-0 flex items-center justify-between px-4 md:px-10 pointer-events-none z-50">
+            {/* PREVIOUS BUTTON */}
+            <motion.button
+              whileHover={{ scale: 1.1, x: -5 }}
+              whileTap={{ scale: 0.9 }}
+              className="prev-btn pointer-events-auto w-14 h-14 rounded-full flex items-center justify-center bg-black/40 backdrop-blur-md border border-white/10 text-white transition-colors duration-500 hover:border-[var(--dynamic-color)]"
+              style={{ boxShadow: `0 0 20px ${activeColor}33` }}
+            >
+              <ChevronLeft color={activeColor} size={32} strokeWidth={1.5} />
+            </motion.button>
+
+            {/* NEXT BUTTON */}
+            <motion.button
+              whileHover={{ scale: 1.1, x: 5 }}
+              whileTap={{ scale: 0.9 }}
+              className="next-btn pointer-events-auto w-14 h-14 rounded-full flex items-center justify-center bg-black/40 backdrop-blur-md border border-white/10 text-white transition-colors duration-500 hover:border-[var(--dynamic-color)]"
+              style={{ boxShadow: `0 0 20px ${activeColor}33` }}
+            >
+              <ChevronRight color={activeColor} size={32} strokeWidth={1.5} />
+            </motion.button>
+          </div>
+        </Swiper>
+
+        {selectedProject && PROJECT_DATA[selectedProject].title && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ease-out opacity-100"
+            onClick={() => setSelectedProject(null)} // Close when clicking background
+          >
+            {/* Close Button */}
+            <button
+              className="absolute top-4 right-4 z-50 text-white text-4xl font-extralight hover:text-gray-300 transition duration-150"
+              onClick={() => setSelectedProject(null)}
+              style={{ color: "var(--color-primary)" }}
+            >
+              &times;
+            </button>
+
+            {/* Expanded Image */}
+            <div
+              className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 ease-out motion-safe:scale-100 motion-safe:opacity-100"
+              onClick={(e) => e.stopPropagation()} // Prevent close when clicking image
+            >
+              <img
+                src={PROJECT_DATA[selectedProject].image}
+                className="w-full max-h-full object-contain mx-auto"
+                alt={PROJECT_DATA[selectedProject].title}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
