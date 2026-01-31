@@ -56,6 +56,7 @@ const ProjectTiles = () => {
   return (
     <section
       className={`relative h--100 w-full px-6 py-12 overflow-hidden ${isDark ? "bg-slate-900" : "bg-slate-50"}`}
+      id="work"
     >
       <div className="max-w-7xl mx-auto z-10 overflow-hidden">
         <div className="flex justify-between items-end pb-8 md:pb-12">
@@ -96,11 +97,7 @@ const ProjectTiles = () => {
           className="relative w-full py-10"
         >
           {PROJECT_DATA.map((project, i) => (
-            <SwiperSlide
-              key={project.id}
-              className="w-[75%] md:w-[450px]"
-              onClick={() => setSelectedProject(i)}
-            >
+            <SwiperSlide key={project.id} className="w-[75%] md:w-[450px]">
               <motion.div className="relative h-[550px] rounded-[2.5rem] overflow-hidden">
                 <img
                   src={project.image}
@@ -120,6 +117,27 @@ const ProjectTiles = () => {
                       className="h-full bg-[var(--color-primary)]"
                     />
                   </div>
+
+                  {/* Zoom Button - Only shows when slide is active */}
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="pt-2"
+                  >
+                    <button
+                      className="text-white/80 text-xs font-bold uppercase tracking-widest transition-colors duration-300"
+                      style={{
+                        margin: 0,
+                        padding: 0,
+                        backgroundColor: "transparent",
+                      }}
+                      onClick={() => setSelectedProject(i)}
+                    >
+                      Click here to zoom
+                    </button>
+                  </motion.div>
                 </div>
               </motion.div>
             </SwiperSlide>
@@ -134,7 +152,7 @@ const ProjectTiles = () => {
               className="prev-btn pointer-events-auto w-14 h-14 rounded-full flex items-center justify-center bg-black/40 backdrop-blur-md border border-white/10 text-white transition-colors duration-500 hover:border-[var(--dynamic-color)]"
               style={{ boxShadow: `0 0 20px ${activeColor}33` }}
             >
-              <ChevronLeft color={activeColor} size={32} strokeWidth={1.5} />
+              <ChevronLeft color={activeColor} size={40} strokeWidth={1.5} />
             </motion.button>
 
             {/* NEXT BUTTON */}
@@ -144,12 +162,12 @@ const ProjectTiles = () => {
               className="next-btn pointer-events-auto w-14 h-14 rounded-full flex items-center justify-center bg-black/40 backdrop-blur-md border border-white/10 text-white transition-colors duration-500 hover:border-[var(--dynamic-color)]"
               style={{ boxShadow: `0 0 20px ${activeColor}33` }}
             >
-              <ChevronRight color={activeColor} size={32} strokeWidth={1.5} />
+              <ChevronRight color={activeColor} size={40} strokeWidth={1.5} />
             </motion.button>
           </div>
         </Swiper>
 
-        {selectedProject && PROJECT_DATA[selectedProject].title && (
+        {selectedProject !== null && PROJECT_DATA[selectedProject].title && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ease-out opacity-100"
             onClick={() => setSelectedProject(null)} // Close when clicking background
