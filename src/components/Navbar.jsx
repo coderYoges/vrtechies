@@ -47,7 +47,7 @@ const Navbar = () => {
           style={{ scaleX, backgroundColor: "var(--color-primary)" }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 h-22 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
           {/* Logo */}
           <div className="flex flex-col items-center space-x-1 md:space-x-2 lg:space-x-3">
             <LogoCmpt

@@ -6,6 +6,7 @@ import ProjectTiles from "./components/Projects";
 import Footer from "./components/Footer";
 import BackToTop from "./hooks/BackToTop";
 import Divider from "./components/Divider";
+import ContactNow from "./hooks/ContactNow";
 
 function App() {
   return (
@@ -18,20 +19,10 @@ function App() {
       <Services />
       <Divider />
       <ProjectTiles />
+      <Divider />
       <Footer />
       <BackToTop />
-      {/* GLOBAL HUD: Optional UI element to show current system status */}
-      <div className="fixed bottom-6 left-6 z-50 hidden md:block">
-        <div className="flex items-center gap-3 px-4 py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full">
-          <div className="w-2 h-2 rounded-full animate-pulse" />
-          <span
-            className="text-[10px] font-black text-white uppercase tracking-widest opacity-80"
-            style={{ color: "var(--dynamic-color)" }}
-          >
-            System Status: ACTIVE
-          </span>
-        </div>
-      </div>
+      <ContactNow />
     </div>
   );
 }

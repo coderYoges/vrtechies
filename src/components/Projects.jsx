@@ -31,7 +31,7 @@ const PROJECT_DATA = [
   },
   {
     id: 2,
-    title: "Grocery Sites",
+    title: "Ecommerce Sites",
     category: "",
     image: grocerySite,
   },

@@ -22,7 +22,7 @@ const BackToTop = () => {
     <button
       onClick={scrollToTop}
       className={`
-        fixed bottom-6 right-6 z-50 p-3 rounded-full shadow-lg
+        fixed bottom-6 left-6 z-50 p-3 rounded-full shadow-lg
         transition-opacity duration-300
         ${visible ? "opacity-100" : "opacity-0"}
       `}
