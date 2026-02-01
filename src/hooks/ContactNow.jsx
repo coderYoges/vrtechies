@@ -20,7 +20,7 @@ const ContactNow = () => {
     <button
       onClick={handleChatClick}
       className={`
-        fixed bottom-6 right-6 z-50 p-3 rounded-full shadow-lg
+        fixed bottom-6 right-6 lg:right-20 z-50 p-3 rounded-full shadow-lg
         transition-all duration-300 hover:scale-110 active:scale-95
       `}
       style={{

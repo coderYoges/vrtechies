@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc } from "firebase/firestore";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Send,
@@ -226,7 +226,7 @@ const Footer = () => {
                     </address>
 
                     <a
-                      href="https://maps.google.com"
+                      href="https://www.google.com/maps/place/TNPHC+(Tamil+Nadu+Police+Housing+Corporation)/@12.8379018,80.131692,15z/data=!4m6!3m5!1s0x3a52584db0cb7195:0x3a4edabebd30a829!8m2!3d12.8379929!4d80.1407075!16s%2Fg%2F11c2lfwq85?entry=ttu&g_ep=EgoyMDI2MDEyOC4wIKXMDSoASAFQAw%3D%3D"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group flex italic text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium hover:text-[var(--color-primary)] transition-colors duration-500 block"
@@ -249,7 +249,7 @@ const Footer = () => {
               </div>
 
               {/* BOTTOM SECTION: LEGAL & SOCIAL UTILITY BAR */}
-              <div className="pt-10 pb-6 border-t border-slate-200 dark:border-slate-800/50 flex flex-col lg:flex-row justify-between items-center gap-8">
+              <div className="pt-10 pb-6 border-t border-slate-200 dark:border-slate-800/50 flex flex-col justify-between items-center gap-8">
                 <nav className="flex gap-10 order-2 lg:order-1">
                   {["Privacy", "Terms", "Cookies"].map((link) => (
                     <a

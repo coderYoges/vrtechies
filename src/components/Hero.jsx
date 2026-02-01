@@ -12,7 +12,7 @@ const Hero = () => {
 
   return (
     <section
-      className={`relative flex h-[100dvh] w-screen items-center justify-center overflow-hidden  ${isDark ? "bg-slate-900 text-white" : "bg-slate-50 text-slate-900"}`}
+      className={`relative flex h-[100dvh] w-full md:w-screen items-center justify-center overflow-hidden  ${isDark ? "bg-slate-900 text-white" : "bg-slate-50 text-slate-900"}`}
     >
       {/* 3D Background */}
       <div className="absolute inset-0">
