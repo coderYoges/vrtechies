@@ -129,7 +129,7 @@ const Footer = () => {
 
   // Global Input Style
   const inputClass =
-    "w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-2xl outline-none focus:ring-2 focus:ring-[var(--color-primary)] dark:text-white transition-all";
+    "w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-2xl outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-black transition-all";
 
   const onSubmit = async (data) => {
     setStatus("loading");
@@ -317,7 +317,7 @@ const Footer = () => {
                       {...register(field.id, {
                         required: `${field.placeholder} is required`,
                       })}
-                      className={`${inputClass} !pl-12 !py-4 w-full rounded-xl border-slate-200 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-[var(--color-primary)]/20 transition-all appearance-none cursor-pointer`}
+                      className={`${inputClass} !pl-12 !py-4 w-full rounded-xl border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-[var(--color-primary)]/20 transition-all appearance-none cursor-pointer`}
                     >
                       <option value="" disabled selected hidden>
                         {field.placeholder}
@@ -355,7 +355,7 @@ const Footer = () => {
                       required: `${field.placeholder} is required`,
                     })}
                     type={field.type}
-                    className={`${inputClass} !pl-12 !py-4 w-full rounded-xl border-slate-200 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-[var(--color-primary)]/20 transition-all`}
+                    className={`${inputClass} !pl-12 !py-4 w-full rounded-xl border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-[var(--color-primary)]/20 transition-all`}
                     placeholder={field.placeholder}
                   />
                 )}
