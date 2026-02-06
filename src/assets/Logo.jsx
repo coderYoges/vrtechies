@@ -2,41 +2,70 @@ import * as React from "react";
 import { useTheme } from "../hooks/ThemeContext";
 import { GLOBAL_THEMES, COLORS } from "../config/constants";
 
-const SVGComponent = ({ size = 50 }) => {
+const SVGComponent = () => {
   const { isDark, colorIndex = 0 } = useTheme();
+
   const mainColor = isDark
     ? GLOBAL_THEMES[colorIndex].dark.primary
     : GLOBAL_THEMES[colorIndex].light.primary;
   const secondaryColor = isDark ? COLORS.DARK_PRIMARY : COLORS.LIGHT_PRIMARY;
+
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 3 3"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      style={{
+        width: "clamp(32px, 6vw, 60px)",
+        aspectRatio: "1/1",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
-      <style>
-        {`
-          .cls-1 { fill: ${mainColor}; }
-          .cls-1, .cls-2 { fill-rule:evenodd; }
-          .cls-2 { fill: ${secondaryColor}; }
-        `}
-      </style>
-      <g>
-        <g>
+      <svg
+        viewBox="0 0 3 3"
+        style={{
+          width: "100%",
+          height: "100%",
+          overflow: "visible",
+          cursor: "pointer",
+        }}
+        xmlns="http://www.w3.org"
+      >
+        <style>
+          {`
+            @keyframes jump {
+              /* When at ground level */
+              0%, 100% { 
+                transform: translateY(0); 
+                filter: drop-shadow(0 0.05px 0.02px rgba(0, 0, 0, 0.4)); /* Small shadow */
+              }
+              /* When at peak height */
+              50% { 
+                transform: translateY(-0.3px); 
+                filter: drop-shadow(0 0.15px 0.1px rgba(0, 0, 0, 0.6)); /* Larger, blurrier shadow */
+              }
+            }
+            .svg-wrapper {
+              transform-origin: center;
+              animation: jump 0.8s ease-in-out infinite;
+              will-change: transform, filter; /* Add filter to will-change */
+            }
+            .cls-1 { fill: ${mainColor}; transition: fill 0.3s ease; }
+            .cls-2 { fill: ${secondaryColor}; transition: fill 0.3s ease; }
+            .cls-1, .cls-2 { fill-rule: evenodd; }
+          `}
+        </style>
+        <g className="svg-wrapper">
           <path
             className="cls-1"
-            points="16.64 15.13 17.38 13.88 20.91 13.88 22 12 19.82 8.25 16.75 8.25 15.69 6.39 14.5 6.39 14.5 5.13 16.44 5.13 17.5 7 19.09 7 16.9 3.25 12.63 3.25 12.63 8.25 14.36 8.25 15.09 9.5 12.63 9.5 12.63 12 14.89 12 15.94 10.13 18.75 10.13 19.47 11.38 16.67 11.38 15.62 13.25 12.63 13.25 12.63 17.63 16.03 17.63 15.31 18.88 12.63 18.88 12.63 20.75 16.9 20.75 20.18 15.13 18.09 15.13 17.36 16.38 14.5 16.38 14.5 15.13 16.64 15.13"
             d="M2.08 1.891L2.172 1.735L2.614 1.735L2.75 1.5L2.478 1.031L2.094 1.031L1.961 0.799L1.813 0.799L1.813 0.641L2.055 0.641L2.188 0.875L2.386 0.875L2.112 0.406L1.579 0.406L1.579 1.031L1.795 1.031L1.886 1.188L1.579 1.188L1.579 1.5L1.861 1.5L1.992 1.266L2.344 1.266L2.434 1.423L2.084 1.423L1.952 1.656L1.579 1.656L1.579 2.204L2.004 2.204L1.914 2.36L1.579 2.36L1.579 2.594L2.112 2.594L2.522 1.891L2.261 1.891L2.17 2.047L1.813 2.047L1.813 1.891L2.08 1.891Z"
           />
           <path
             className="cls-2"
-            points="7.36 15.13 6.62 13.88 3.09 13.88 2 12 4.18 8.25 7.25 8.25 8.31 6.39 9.5 6.39 9.5 5.13 7.56 5.13 6.5 7 4.91 7 7.1 3.25 11.38 3.25 11.38 8.25 9.64 8.25 8.91 9.5 11.38 9.5 11.38 12 9.11 12 8.06 10.13 5.25 10.13 4.53 11.38 7.33 11.38 8.38 13.25 11.38 13.25 11.38 17.63 7.97 17.63 8.69 18.88 11.38 18.88 11.38 20.75 7.1 20.75 3.82 15.13 5.91 15.13 6.64 16.38 9.5 16.38 9.5 15.13 7.36 15.13"
             d="M0.92 1.891L0.828 1.735L0.386 1.735L0.25 1.5L0.522 1.031L0.906 1.031L1.039 0.799L1.188 0.799L1.188 0.641L0.945 0.641L0.813 0.875L0.614 0.875L0.887 0.406L1.423 0.406L1.423 1.031L1.205 1.031L1.114 1.188L1.423 1.188L1.423 1.5L1.139 1.5L1.008 1.266L0.656 1.266L0.566 1.423L0.916 1.423L1.048 1.656L1.423 1.656L1.423 2.204L0.996 2.204L1.086 2.36L1.423 2.36L1.423 2.594L0.887 2.594L0.477 1.891L0.739 1.891L0.83 2.047L1.188 2.047L1.188 1.891L0.92 1.891Z"
           />
         </g>
-      </g>
-    </svg>
+      </svg>
+    </div>
   );
 };
 

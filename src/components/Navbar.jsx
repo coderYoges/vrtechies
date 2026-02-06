@@ -4,13 +4,7 @@ import { Sun, Moon, Menu, X } from "lucide-react";
 import LogoCmpt from "../assets/Logo.jsx";
 import { useTheme } from "../hooks/ThemeContext";
 import { COLORS } from "../config/constants.js";
-
-const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Services", href: "#services" },
-  { name: "Work", href: "#work" },
-  { name: "Contact", href: "#contact" },
-];
+import { NAV_CONSTANTS } from "../config";
 
 const Navbar = () => {
   const { scrollYProgress } = useScroll();
@@ -37,17 +31,14 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b ${
-          isDark ? "bg-black border-gray-800" : "bg-white border-gray-200"
-        }`}
-      >
+        className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b bg-black border-gray-800">
         {/* Scroll progress bar */}
         <motion.div
           className="absolute bottom-0 left-0 right-0 h-[2px] origin-left"
           style={{ scaleX, backgroundColor: "var(--color-primary)" }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 h-25 flex justify-between items-center">
           {/* Logo */}
           <div className="flex flex-col items-center space-x-1 md:space-x-2 lg:space-x-3">
             <LogoCmpt
@@ -74,7 +65,7 @@ const Navbar = () => {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
+            {NAV_CONSTANTS.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
@@ -201,7 +192,7 @@ const Navbar = () => {
               </div>
 
               <div className="flex flex-col space-y-2 px-3 py-2">
-                {navLinks.map((link, index) => (
+                {NAV_CONSTANTS.map((link, index) => (
                   <motion.a
                     key={link.name}
                     href={link.href}
@@ -226,7 +217,7 @@ const Navbar = () => {
                 className="mt-2 w-full text-white py-3 rounded-xl font-bold transition-all hover:brightness-110 active:scale-80"
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.1 * navLinks.length, duration: 0.4 }}
+                transition={{ delay: 0.1 * NAV_CONSTANTS.length, duration: 0.4 }}
               >
                 Get Started
               </motion.button>
