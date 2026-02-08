@@ -5,10 +5,29 @@
   --animate-shine: shine 3s ease-in-out infinite;
 
   @keyframes shine {
-    0%, 100% { background-position: 100% 0%; }
-    50% { background-position: -100% 0%; }
+    0%,
+    100% {
+      background-position: 100% 0%;
+    }
+    50% {
+      background-position: -100% 0%;
+    }
   }
 
+  /* Define the custom jump animation */
+  --animate-jump: jump 0.8s ease-in-out infinite;
+
+  @keyframes jump {
+    0%,
+    100% {
+      transform: translateY(0);
+      filter: drop-shadow(0 0.05px 0.02px rgba(0, 0, 0, 0.4));
+    }
+    50% {
+      transform: translateY(-0.3px);
+      filter: drop-shadow(0 0.15px 0.1px rgba(0, 0, 0, 0.6));
+    }
+  }
 }
 
 @keyframes expand-line {

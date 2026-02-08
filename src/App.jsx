@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
+import NavbarCmpt from "./pages/navbar";
 import Hero from "./components/Hero";
 import AboutUs from "./components/AboutUs";
 import Services from "./components/Services";
@@ -28,16 +28,18 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  if (isLoading){
+    return <LoadingScreen isRevealing={isRevealing} />
+  }
+
   return (
     <>
-      {/* 1. Loading Indicator & Shutter Panels */}
-      {isLoading && <LoadingScreen isRevealing={isRevealing} />}
 
       {/* 2. Main Content with Blur Effect */}
       <div
         className={`min-h-screen transition-all duration-1000 ${isRevealing ? "blur-0" : "blur-md"}`}
       >
-        <Navbar />
+        <NavbarCmpt />
         <Hero />
         <Divider />
         <AboutUs />

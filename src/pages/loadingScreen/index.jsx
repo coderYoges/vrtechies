@@ -7,10 +7,12 @@ const LoadingScreen = ({ isRevealing }) => {
     <div className="fixed inset-0 z-100 overflow-hidden pointer-events-none">
       {/* Background Transition Panels */}
       <div
-        className={`fixed inset-0 bg-[${COLORS.LOADING_BG_PANEL}] transition-all duration-1000 ease-in-out ${isRevealing ? "[clip-path:polygon(0_0,_0_0,_0_0)]" : "[clip-path:polygon(0_0,_100%_0,_0_100%)]"}`}
+        className={`fixed inset-0 transition-all duration-1000 ease-in-out ${isRevealing ? "[clip-path:polygon(0_0,_0_0,_0_0)]" : "[clip-path:polygon(0_0,_100%_0,_0_100%)]"}`}
+        style={{ backgroundColor: COLORS.LOADING_BG_PANEL }}
       />
       <div
-        className={`fixed inset-0 bg-[${COLORS.LOADING_BG_PANEL}] transition-all duration-1000 ease-in-out ${isRevealing ? "[clip-path:polygon(100%_100%,_100%_100%,_100%_100%)]" : "[clip-path:polygon(100%_0,_100%_100%,_0_100%)]"}`}
+        className={`fixed inset-0 transition-all duration-1000 ease-in-out ${isRevealing ? "[clip-path:polygon(100%_100%,_100%_100%,_100%_100%)]" : "[clip-path:polygon(100%_0,_100%_100%,_0_100%)]"}`}
+        style={{ backgroundColor: COLORS.LOADING_BG_PANEL }}
       />
 
       {/* Diagonal Loading Line - Original Amber */}
@@ -28,7 +30,8 @@ const LoadingScreen = ({ isRevealing }) => {
 
       {!isRevealing && (
         <div
-          className={`fixed inset-0 z-120 flex flex-col items-center justify-center bg-[${COLORS.LOADING_BG_PANEL}] px-4 text-center select-none`}
+          className={`fixed inset-0 z-120 flex flex-col items-center justify-center px-4 text-center select-none`}
+          style={{ backgroundColor: COLORS.LOADING_BG_PANEL }}
         >
           {/* Metallic Gold Infinity Spinner */}
           <div className="mb-4 opacity-90">
@@ -38,11 +41,14 @@ const LoadingScreen = ({ isRevealing }) => {
           <div className="mb-2 md:mb-6">
             {/* High-Contrast Gold Company Name - Static */}
             <h1
-              className={`bg-gradient-to-b from-[${COLORS.LOADING_GOLD_FROM}] via-[${COLORS.LOADING_GOLD_VIA}] to-[${COLORS.LOADING_GOLD_TO}] 
+              className="bg-gradient-to-b
                          bg-clip-text text-transparent font-serif italic font-bold 
                          tracking-[0.4em] sm:tracking-[0.6em] uppercase 
-                         text-2xl sm:text-4xl md:text-6xl lg:text-7xl`}
-              style={{ fontFamily: "'Playfair Display', serif" }}
+                         text-2xl sm:text-4xl md:text-6xl lg:text-7xl"
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                backgroundImage: `linear-gradient(to bottom, ${COLORS.LOADING_GOLD_FROM}, ${COLORS.LOADING_GOLD_VIA}, ${COLORS.LOADING_GOLD_TO})`,
+              }}
             >
               {COMPANY_NAME.FULLNAME}
             </h1>
@@ -57,7 +63,7 @@ const LoadingScreen = ({ isRevealing }) => {
               className="text-slate-300 font-serif italic tracking-wider sm:tracking-[0.15em] text-base sm:text-xl md:text-2xl lg:text-3xl leading-relaxed"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              {WELCOME_MSG.FIRST_LINE} <br className="sm:hidden" />{" "}
+              {WELCOME_MSG.FIRST_LINE} <br className="sm:hidden" />
               {WELCOME_MSG.SECOND_LINE}
             </p>
           </div>
