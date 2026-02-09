@@ -1,59 +1,75 @@
-import React, { useState, useEffect } from "react";
-import NavbarCmpt from "./pages/navbar";
-import Hero from "./components/Hero";
-import AboutUs from "./components/AboutUs";
-import Services from "./components/Services";
-import ProjectTiles from "./components/Projects";
-import Footer from "./components/Footer";
-import BackToTop from "./hooks/BackToTop";
-import Divider from "./components/Divider";
-import ContactNow from "./hooks/ContactNow";
-import SVGComponent from "./assets/Logo"; // Your Lightning Star
-import LoadingScreen from "./pages/loadingScreen";
+import React, { useState, useEffect, useReducer, Suspense, lazy } from "react";
+import { motion } from "framer-motion";
+import { ErrorBoundary } from "react-error-boundary";
 
-function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isRevealing, setIsRevealing] = useState(false);
-  const [isNavbarVisible, setIsNavbarVisible] = useState(false);
+/**
+ * LAZY LOADED COMPONENTS
+ */
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsRevealing(true);
-      setTimeout(() => {
-        setIsNavbarVisible(true);
-        setIsLoading(false);
-      }, 1000);
-    }, 1000);
+const Hero = lazy(() => import("./components/Hero"));
+const AboutUs = lazy(() => import("./components/AboutUs"));
+const Services = lazy(() => import("./components/Services"));
+const ProjectTiles = lazy(() => import("./components/Projects"));
+const Footer = lazy(() => import("./components/Footer"));
+const LoadingScreen = lazy(() => import("./pages/loadingScreen"));
+const NavbarCmpt = lazy(() => import("./pages/navbar"));
+const Divider = lazy(() => import("./components/Divider"));
+const BackToTop = lazy(() => import("./hooks/BackToTop"));
+const ContactNow = lazy(() => import("./hooks/ContactNow"));
+const ErrorFallback = lazy(() => import("./pages/errorScreen"));
 
-    return () => clearTimeout(timer);
-  }, []);
+const initialState = { isLoading: true, isRevealing: false };
 
-  if (isLoading){
-    return <LoadingScreen isRevealing={isRevealing} />
+function reducer(state, action) {
+  switch (action.type) {
+    case "REVEAL":
+      return { ...state, isRevealing: true };
+    case "COMPLETE":
+      return { ...state, isLoading: false };
+    default:
+      return state;
   }
-
-  return (
-    <>
-
-      {/* 2. Main Content with Blur Effect */}
-      <div
-        className={`min-h-screen transition-all duration-1000 ${isRevealing ? "blur-0" : "blur-md"}`}
-      >
-        <NavbarCmpt />
-        <Hero />
-        <Divider />
-        <AboutUs />
-        <Divider />
-        <Services />
-        <Divider />
-        <ProjectTiles />
-        <Divider />
-        <Footer />
-        <BackToTop />
-        <ContactNow />
-      </div>
-    </>
-  );
 }
 
-export default App;
+// --- Main App ---
+export default function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    const rT = setTimeout(() => dispatch({ type: "REVEAL" }), 2500);
+    const cT = setTimeout(() => dispatch({ type: "COMPLETE" }), 3500);
+    return () => {
+      clearTimeout(rT);
+      clearTimeout(cT);
+    };
+  }, []);
+
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <Suspense fallback={<LoadingScreen isRevealing={state.isRevealing} />}>
+        {state.isLoading ? (
+          <LoadingScreen isRevealing={state.isRevealing} />
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="min-h-screen"
+          >
+            <NavbarCmpt />
+            <Hero />
+            <Divider />
+            <AboutUs />
+            <Divider />
+            <Services />
+            <Divider />
+            <ProjectTiles />
+            <Divider />
+            <Footer />
+            <BackToTop />
+            <ContactNow />
+          </motion.div>
+        )}
+      </Suspense>
+    </ErrorBoundary>
+  );
+}
