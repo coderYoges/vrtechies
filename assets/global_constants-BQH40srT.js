@@ -1,0 +1,1 @@
+const A={LOADING_BG_PANEL:"#0f172a",LOADING_GOLD_FROM:"#FFF5C3",LOADING_GOLD_VIA:"#D4AF37",LOADING_GOLD_TO:"#8A6623",NAVBAR_BG_PANEL:"#1a2333",NAVBAR_TEXT_PRIMARY:"#C0C0C0"},L={FIRSTNAME:"VR",LASTNAME:"Techies",FULLNAME:"vrtechies"},_={FIRST_LINE:"Welcome,",SECOND_LINE:"we’re crafting your experience"},N="Let’s Connect";export{A as C,_ as W,L as a,N as b};
