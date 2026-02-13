@@ -1,4 +1,4 @@
-import{c as A,u as C,j as t,m as k}from"./index-CE-3Ef_7.js";import{C as S}from"./constants-DQBr86e-.js";const D=()=>{const e=A.c(30),{theme:R,isDark:s}=C(),l=s?R?.dark.primary:R?.light.primary,j=`
+import{c as A,u as C,j as t,m as k}from"./index-CBAEnjj8.js";import{C as S}from"./constants-DQBr86e-.js";const D=()=>{const e=A.c(30),{theme:R,isDark:s}=C(),l=s?R?.dark.primary:R?.light.primary,j=`
         relative w-full flex items-center justify-center px-6 py-12
         transition-colors duration-500
         ${s?"bg-slate-900":"bg-slate-50"}

@@ -1,1 +1,0 @@
-import{c as r,j as a}from"./index-CE-3Ef_7.js";const o=()=>{const t=r.c(1);let e;return t[0]===Symbol.for("react.memo_cache_sentinel")?(e=a.jsx("div",{className:"h-1 w-screen bg-gradient-to-r from-transparent via-slate-300 to-transparent dark:via-slate-700"}),t[0]=e):e=t[0],e};export{o as default};
