@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { COLORS, CTA_TEXT, NAV_CONSTANTS, COMPANY_NAME } from "../../../config";
+import { COLORS, CTA_TEXT, NAV_CONSTANTS } from "../../../config";
 import { Menu, X } from "lucide-react";
 
 const MobileCmpt = () => {
@@ -15,11 +15,7 @@ const MobileCmpt = () => {
       <div className="md:hidden flex items-center gap-3 select-none">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="z-50 p-2 transition-transform active:scale-90"
-          style={{
-            color: "var(--color-primary)",
-            backgroundColor: "transparent",
-          }}
+          className="z-50 p-2 transition-transform active:scale-90 text-[var(--color-primary)] bg-transparent"
           aria-label="Toggle Menu"
         >
           {/* Smooth Icon Morphing could be added here */}
@@ -29,13 +25,9 @@ const MobileCmpt = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 backdrop-blur-sm md:hidden"
+          <div
+            className="fixed inset-0 z-40 backdrop-blur-sm md:hidden bg-slate-900/80 backdrop-blur-xl"
             onClick={closeMenu}
-            style={{ backgroundColor: COLORS.NAVBAR_BG_PANEL }}
           >
             <motion.div
               initial={{ x: -50, opacity: 0 }} // Animate from left
@@ -43,10 +35,10 @@ const MobileCmpt = () => {
               exit={{ x: -50, opacity: 0 }}
               transition={{ duration: 0.5 }} // Slower animation
               onClick={(e) => e.stopPropagation()}
-              className="absolute top-10 w-full rounded-2xl p-6"
-              style={{ backgroundColor: COLORS.NAVBAR_BG_PANEL }}
+              viewport={{ once: false }}
+              className="absolute top-16 w-full rounded-2xl p-6 bg-slate-900/80 backdrop-blur-xl"
             >
-              <div className="flex flex-col space-y-3 px-3 py-2">
+              <div className="flex flex-col space-y-3">
                 {NAV_CONSTANTS.map((link, index) => (
                   <motion.a
                     key={link.name}
@@ -83,7 +75,7 @@ const MobileCmpt = () => {
                   color: COLORS.NAVBAR_TEXT_PRIMARY,
                 }}
                 // Added 'select-none' and 'relative' for better hit-area and text handling
-                className="mt-3 w-full py-4 rounded-xl font-bold select-none transition-all shadow-lg"
+                className="mt-3 w-full py-4 rounded-2xl font-bold select-none transition-all shadow-lg"
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{
@@ -105,7 +97,7 @@ const MobileCmpt = () => {
                 {CTA_TEXT}
               </motion.button>
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </Fragment>

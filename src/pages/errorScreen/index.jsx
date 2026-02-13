@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import GalaxyStars from "../../utility/stars";
 
 // --- Realistic UFO Component ---
 const RealisticUFO = () => (
@@ -101,17 +101,6 @@ const RealisticRocket = () => (
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   const message = error.message || "Something went wrong";
 
-  const stars = useMemo(
-    () =>
-      [...Array(80)].map((_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 2 + 1,
-      })),
-    [],
-  );
-
   // Reusable drifting animation wrapper
   const SpaceDrifter = ({
     children,
@@ -204,19 +193,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
       </SpaceDrifter>
 
       {/* 4. Warp Starfield */}
-      {stars.map((star) => (
-        <motion.div
-          key={star.id}
-          animate={{
-            height: star.size,
-            y: 0,
-            opacity: 0.4,
-          }}
-          transition={{ duration: 0.8, ease: "easeIn" }}
-          className="absolute bg-white rounded-full"
-          style={{ top: `${star.y}%`, left: `${star.x}%`, width: star.size }}
-        />
-      ))}
+      <GalaxyStars />
 
       {/* 5. Floating Independent 404 */}
       <motion.div

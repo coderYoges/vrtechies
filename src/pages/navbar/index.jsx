@@ -1,6 +1,5 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import StackedBranding from "./components/StackedBranding";
-import { COLORS } from "../../config";
 import DesktopCmpt from "./components/Desktop";
 import MobileCmpt from "./components/Mobile";
 
@@ -16,11 +15,9 @@ const NavbarCmpt = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b border-gray-800"
-      style={{ backgroundColor: COLORS.NAVBAR_BG_PANEL }}
+      className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b border-gray-800 bg-slate-900/80 backdrop-blur-xl"
     >
       <div className="max-w-7xl mx-auto px-6 h-20 md:h-24 flex justify-between items-center">
-        {/* Stacked Branding */}
         <StackedBranding />
         <DesktopCmpt />
         <MobileCmpt />

@@ -90,4 +90,6 @@ export const COLORS = {
   LIGHT_PRIMARY: "#213547",
   DARK_PRIMARY: "#C0C0C0",
   WHITE: "#fff",
+  NAVBAR_TEXT_PRIMARY: "#F8FAFC",   // Near-white for high contrast
+  NAVBAR_TEXT_HOVER: "#38BDF8",     // Light blue for interactive states
 };

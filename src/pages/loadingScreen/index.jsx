@@ -7,12 +7,10 @@ const LoadingScreen = ({ isRevealing }) => {
     <div className="fixed inset-0 z-100 overflow-hidden pointer-events-none">
       {/* Background Transition Panels */}
       <div
-        className={`fixed inset-0 transition-all duration-1000 ease-in-out ${isRevealing ? "[clip-path:polygon(0_0,_0_0,_0_0)]" : "[clip-path:polygon(0_0,_100%_0,_0_100%)]"}`}
-        style={{ backgroundColor: COLORS.LOADING_BG_PANEL }}
+        className={`fixed inset-0 transition-all duration-1000 ease-in-out bg-[#0f172a] ${isRevealing ? "[clip-path:polygon(0_0,_0_0,_0_0)]" : "[clip-path:polygon(0_0,_100%_0,_0_100%)]"}`}
       />
       <div
-        className={`fixed inset-0 transition-all duration-1000 ease-in-out ${isRevealing ? "[clip-path:polygon(100%_100%,_100%_100%,_100%_100%)]" : "[clip-path:polygon(100%_0,_100%_100%,_0_100%)]"}`}
-        style={{ backgroundColor: COLORS.LOADING_BG_PANEL }}
+        className={`fixed inset-0 transition-all duration-1000 ease-in-out bg-[#0f172a] ${isRevealing ? "[clip-path:polygon(100%_100%,_100%_100%,_100%_100%)]" : "[clip-path:polygon(100%_0,_100%_100%,_0_100%)]"}`}
       />
 
       {/* Diagonal Loading Line - Original Amber */}

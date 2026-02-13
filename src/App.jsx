@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, Suspense, lazy } from "react";
+import { useEffect, useReducer, Suspense, lazy } from "react";
 import { motion } from "framer-motion";
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -6,7 +6,7 @@ import { ErrorBoundary } from "react-error-boundary";
  * LAZY LOADED COMPONENTS
  */
 
-const Hero = lazy(() => import("./components/Hero"));
+const HeroSection = lazy(() => import("./pages/hero"));
 const AboutUs = lazy(() => import("./components/AboutUs"));
 const Services = lazy(() => import("./components/Services"));
 const ProjectTiles = lazy(() => import("./components/Projects"));
@@ -56,7 +56,8 @@ export default function App() {
             className="min-h-screen"
           >
             <NavbarCmpt />
-            <Hero />
+            <HeroSection />
+            {/* <Hero />
             <Divider />
             <AboutUs />
             <Divider />
@@ -66,7 +67,7 @@ export default function App() {
             <Divider />
             <Footer />
             <BackToTop />
-            <ContactNow />
+            <ContactNow /> */}
           </motion.div>
         )}
       </Suspense>

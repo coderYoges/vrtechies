@@ -54,3 +54,20 @@
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
   }
 }
+
+:root {
+  --swiper-theme-color: #60a5fa; /* Matches text-blue-400 */
+  --swiper-navigation-size: 24px;
+}
+
+@keyframes progress-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.animate-progress-fill {
+  animation-name: progress-fill;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
