@@ -1,0 +1,1 @@
+const R={LIGHT_PRIMARY:"#213547",DARK_PRIMARY:"#C0C0C0"};export{R as C};
