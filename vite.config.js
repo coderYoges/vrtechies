@@ -13,5 +13,5 @@ export default defineConfig({
     tailwindcss(),
   ],
   // Replace 'repo-name' with your actual GitHub repository name
-  base: '',
+  base: './',
 });
