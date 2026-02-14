@@ -4,7 +4,7 @@ const SwiperTiles = ({ activeIndex, items }) => {
   const swiper = useSwiper();
 
   return (
-    <div className="flex gap-4 my-6 lg:my-12 w-full">
+    <div className="flex gap-4 my-6 lg:my-12 w-full select-none">
       {items.map((_, index) => (
         <button
           key={index}

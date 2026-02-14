@@ -3,7 +3,7 @@ import GalaxyStars from "../../utility/stars";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import { HERO_CONSTANTS } from "../../config";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SwiperTiles from "./components/SwiperTiles";
 
@@ -15,18 +15,9 @@ import "swiper/css/navigation";
 
 const HeroSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const audioRef = useRef(null);
 
   return (
     <section className="relative w-full min-h-screen bg-[#0f172a] flex overflow-hidden pt-20 ">
-      <audio
-        ref={audioRef}
-        src="/background.mp3"
-        loop
-        playsInline
-        autoPlay={true}
-        muted={false}
-      />
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <GalaxyStars />
         {/* Optional: Dark gradient overlay to fade stars near the text area */}
