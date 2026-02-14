@@ -6,7 +6,7 @@ import { ErrorBoundary } from "react-error-boundary";
  * LAZY LOADED COMPONENTS
  */
 
-const HeroSection = lazy(() => import("./pages/hero"));
+const HmomePage = lazy(() => import("./pages/homePage"));
 const AboutUs = lazy(() => import("./components/AboutUs"));
 const Services = lazy(() => import("./components/Services"));
 const ProjectTiles = lazy(() => import("./components/Projects"));
@@ -36,8 +36,8 @@ export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const rT = setTimeout(() => dispatch({ type: "REVEAL" }), 2500);
-    const cT = setTimeout(() => dispatch({ type: "COMPLETE" }), 3500);
+    const rT = setTimeout(() => dispatch({ type: "REVEAL" }), 1000);
+    const cT = setTimeout(() => dispatch({ type: "COMPLETE" }), 1500);
     return () => {
       clearTimeout(rT);
       clearTimeout(cT);
@@ -56,10 +56,10 @@ export default function App() {
             className="min-h-screen"
           >
             <NavbarCmpt />
-            <HeroSection />
-            {/* <Hero />
-            <Divider />
-            <AboutUs />
+            <HmomePage />
+
+            {/*
+          
             <Divider />
             <Services />
             <Divider />

@@ -1,11 +1,12 @@
 import { useSwiper } from "swiper/react";
+import { HERO_CONSTANTS } from "../../../config";
 
-const SwiperTiles = ({ activeIndex, items }) => {
+export const SwiperTiles = ({ activeIndex }) => {
   const swiper = useSwiper();
 
   return (
-    <div className="flex gap-4 my-6 lg:my-12 w-full select-none">
-      {items.map((_, index) => (
+    <div className="flex gap-4 my-6 lg:my-8 w-full select-none">
+      {HERO_CONSTANTS.map((_, index) => (
         <button
           key={index}
           onClick={() => swiper.slideToLoop(index)}
@@ -34,5 +35,3 @@ const SwiperTiles = ({ activeIndex, items }) => {
     </div>
   );
 };
-
-export default SwiperTiles;

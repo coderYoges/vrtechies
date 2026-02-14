@@ -42,3 +42,5 @@ export const HERO_CONSTANTS = [
     ctaButton: "Build Something Better",
   },
 ];
+
+export const HERO_SUB_TITLE = 'Our Engineering Standard';

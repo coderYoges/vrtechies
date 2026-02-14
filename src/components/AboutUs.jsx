@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
 import { useTheme } from "../hooks/ThemeContext";
-import { COLORS } from "../config/constants";
+import { COLORS } from "../config";
 
 const AboutUs = () => {
-  const { theme, isDark } = useTheme();
-  const activeColor = isDark ? theme?.dark.primary : theme?.light.primary;
+  const activeColor = COLORS.LOADING_GOLD_FROM;
 
   return (
     <>
@@ -12,9 +11,8 @@ const AboutUs = () => {
         className={`
         relative w-full flex items-center justify-center px-6 py-12
         transition-colors duration-500
-        ${isDark ? "bg-slate-900" : "bg-slate-50"}
+        bg-slate-900
       `}
-        style={{ color: isDark ? COLORS.DARK_PRIMARY : COLORS.LIGHT_PRIMARY }}
         id="about"
       >
         <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-2">
@@ -25,9 +23,9 @@ const AboutUs = () => {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h2 className="text-4xl md:text-6xl font-black tracking-tighter">
+            {/* <h2 className="text-4xl md:text-6xl font-black tracking-tighter">
               About <span style={{ color: activeColor }}>Us</span>
-            </h2>
+            </h2> */}
 
             <p className="mt-6 text-base sm:text-lg leading-relaxed max-w-xl">
               We build human-centered digital experiences where design,
@@ -58,11 +56,7 @@ const AboutUs = () => {
             ].map((item) => (
               <motion.div
                 key={item.label}
-                className={`
-        rounded-2xl p-6 shadow-lg border backdrop-blur-xl
-        transition-colors duration-500
-        ${isDark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200/50"}
-      `}
+                className="rounded-2xl p-6 shadow-lg border backdrop-blur-xl transition-colors duration-500 bg-slate-800 border-slate-700"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0px 15px 25px rgba(0,0,0,0.2)",
