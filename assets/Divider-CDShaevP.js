@@ -1,0 +1,1 @@
+import{c as r,j as s}from"./index-BaoqyMfr.js";const o=()=>{const t=r.c(1);let e;return t[0]===Symbol.for("react.memo_cache_sentinel")?(e=s.jsx("div",{className:"h-1 w-screen bg-gradient-to-r from-transparent via-slate-700 to-transparent "}),t[0]=e):e=t[0],e};export{o as default};

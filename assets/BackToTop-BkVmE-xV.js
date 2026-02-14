@@ -1,4 +1,4 @@
-import{c as w,r as m,u as x,j as c}from"./index-DWZHJlWL.js";const v=()=>{const e=w.c(8),[p,u]=m.useState(!1),{theme:a,isDark:f}=x(),n=f?a?.dark.primary:a?.light.primary;let t,s;e[0]===Symbol.for("react.memo_cache_sentinel")?(t=()=>{const d=()=>{u(window.scrollY>300)};return window.addEventListener("scroll",d),()=>window.removeEventListener("scroll",d)},s=[],e[0]=t,e[1]=s):(t=e[0],s=e[1]),m.useEffect(t,s);const h=b,i=`
+import{c as w,r as m,u as x,j as c}from"./index-BaoqyMfr.js";const v=()=>{const e=w.c(8),[p,u]=m.useState(!1),{theme:a,isDark:f}=x(),n=f?a?.dark.primary:a?.light.primary;let t,s;e[0]===Symbol.for("react.memo_cache_sentinel")?(t=()=>{const d=()=>{u(window.scrollY>300)};return window.addEventListener("scroll",d),()=>window.removeEventListener("scroll",d)},s=[],e[0]=t,e[1]=s):(t=e[0],s=e[1]),m.useEffect(t,s);const h=b,i=`
         fixed bottom-6 left-6 lg:left-20 z-50 p-3 rounded-full shadow-lg
         transition-opacity duration-300
         ${p?"opacity-100":"opacity-0"}
